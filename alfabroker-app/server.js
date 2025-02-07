@@ -1,10 +1,12 @@
-const express = require("express");
-const cors = require("cors");
+import express from 'express';
+import cors from 'cors';
+import tutorialRoutes from './app/routes/turorial.routes.js';  // Ajusta la ruta
+import db from './app/models/index.js';  // Ajusta la ruta según corresponda
 
 const app = express();
 
-var corsOptions = {
-  origin: "http://localhost:8081"
+const corsOptions = {
+  origin: "http://localhost:8081",
 };
 
 app.use(cors(corsOptions));
@@ -15,7 +17,6 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-const db = require("./app/models");
 db.sequelize.sync()
   .then(() => {
     console.log("Synced db.");
@@ -34,7 +35,9 @@ app.get("/", (req, res) => {
   res.json({ message: "Bienvenidos al API mi alfabroker" });
 });
 
-require("./app/routes/turorial.routes")(app);
+// Importar y usar las rutas
+
+tutorialRoutes(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

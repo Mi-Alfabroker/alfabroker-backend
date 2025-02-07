@@ -1,9 +1,10 @@
-const db = require("../models");
-const Tutorial = db.tutorials;
-const Op = db.Sequelize.Op;
+import db from '../models/index.js';  // Importa todos los modelos desde index.js
+import { Op } from 'sequelize';  // Asegúrate de importar Op de Sequelize
+
+const Tutorial = db.tutorials;  // Accedemos al modelo de Tutorial desde db
 
 // Create and Save a new Tutorial
-exports.create = (req, res) => {
+export const create = (req, res) => {
   // Validate request
   if (!req.body.title) {
     res.status(400).send({
@@ -26,16 +27,15 @@ exports.create = (req, res) => {
     })
     .catch(err => {
       res.status(500).send({
-        message:
-          err.message || "Some error occurred while creating the Tutorial."
+        message: err.message || "Some error occurred while creating the Tutorial."
       });
     });
 };
 
 // Retrieve all Tutorials from the database.
-exports.findAll = (req, res) => {
+export const findAll = (req, res) => {
   const title = req.query.title;
-  var condition = title ? { title: { [Op.iLike]: `%${title}%` } } : null;
+  const condition = title ? { title: { [Op.iLike]: `%${title}%` } } : null;
 
   Tutorial.findAll({ where: condition })
     .then(data => {
@@ -43,14 +43,13 @@ exports.findAll = (req, res) => {
     })
     .catch(err => {
       res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving tutorials."
+        message: err.message || "Some error occurred while retrieving tutorials."
       });
     });
 };
 
 // Find a single Tutorial with an id
-exports.findOne = (req, res) => {
+export const findOne = (req, res) => {
   const id = req.params.id;
 
   Tutorial.findByPk(id)
@@ -65,7 +64,7 @@ exports.findOne = (req, res) => {
 };
 
 // Update a Tutorial by the id in the request
-exports.update = (req, res) => {
+export const update = (req, res) => {
   const id = req.params.id;
 
   Tutorial.update(req.body, {
@@ -90,7 +89,7 @@ exports.update = (req, res) => {
 };
 
 // Delete a Tutorial with the specified id in the request
-exports.delete = (req, res) => {
+export const deleteTutorial = (req, res) => {
   const id = req.params.id;
 
   Tutorial.destroy({
@@ -115,7 +114,7 @@ exports.delete = (req, res) => {
 };
 
 // Delete all Tutorials from the database.
-exports.deleteAll = (req, res) => {
+export const deleteAll = (req, res) => {
   Tutorial.destroy({
     where: {},
     truncate: false
@@ -125,22 +124,20 @@ exports.deleteAll = (req, res) => {
     })
     .catch(err => {
       res.status(500).send({
-        message:
-          err.message || "Some error occurred while removing all tutorials."
+        message: err.message || "Some error occurred while removing all tutorials."
       });
     });
 };
 
-// find all published Tutorial
-exports.findAllPublished = (req, res) => {
+// Find all published Tutorials
+export const findAllPublished = (req, res) => {
   Tutorial.findAll({ where: { published: true } })
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving tutorials."
+        message: err.message || "Some error occurred while retrieving tutorials."
       });
     });
 };
