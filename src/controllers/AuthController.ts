@@ -16,12 +16,12 @@ export default class AuthController {
   });
 
   signUp = asyncWrapper(async (req: Request) => {
-    const { username, email, password, status, type } = req.body;
+    const { nombre, email, password, estado, type } = req.body;
     const response = await this.userService.signUp(
-      username,
+      nombre,
       email,
       password,
-      status || 'active',
+      estado || 'active',
       type || 'agent'
     );
     return new SuccessResponse(response);

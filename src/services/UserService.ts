@@ -1,7 +1,7 @@
 import { ApplicationError } from '../utils/ApiError';
 import { Service } from 'typedi';
 import { LoggerClient } from './LoggerClient';
-import { User } from '../models/User';
+import User from '../models/user';
 import jwt from 'jsonwebtoken';
 import { BadRequestError } from '../utils/ApiError';
 import dotenv from 'dotenv';
@@ -21,10 +21,10 @@ export default class UserService {
   }
 
   signUp = async (
-    username: string,
+    nombre: string,
     email: string,
     password: string,
-    status: 'active' | 'inactive',
+    estado: 'active' | 'inactive',
     type: 'admin' | 'agent'
   ) => {
     const existingUser = await User.findOne({ where: { email } });
@@ -33,10 +33,10 @@ export default class UserService {
     }
 
     const user = await User.create({
-      username,
+      nombre,
       email,
       password,
-      status,
+      estado,
       type
     });
     

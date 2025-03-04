@@ -1,16 +1,17 @@
 import { Sequelize } from 'sequelize-typescript';
-import config from '../config/Config';
-import { User } from '../models/User';
+import {
+  User,
+  Poliza,
+} from '../models';
 
-
-const connection = new Sequelize({
+const sequelize = new Sequelize({
   dialect: 'postgres',
-  host: config.dbHost,
-  username: config.dbUser,
-  password: config.dbPassword,
-  database: config.dbName,
+  host: process.env.DB_HOST || 'localhost',
+  username: process.env.DB_USER || 'postgres',
+  password: process.env.DB_PASSWORD || 'postgres',
+  database: process.env.DB_NAME || 'alfabroker',
   logging: false,
-  models: [__dirname + '/../models/**.ts'],
+  models: [User, Poliza],
 });
 
-export default connection;
+export default sequelize;

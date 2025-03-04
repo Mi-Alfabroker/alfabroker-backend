@@ -30,9 +30,9 @@ export const swaggerDocument = {
             'application/json': {
               schema: {
                 type: 'object',
-                required: ['username', 'email', 'password', 'status', 'type'],
+                required: ['nombre', 'email', 'password', 'estado', 'type'],
                 properties: {
-                  username: {
+                  nombre: {
                     type: 'string',
                     example: 'johndoe'
                   },
@@ -44,7 +44,7 @@ export const swaggerDocument = {
                     type: 'string',
                     example: 'password123'
                   },
-                  status: {
+                  estado: {
                     type: 'string',
                     enum: ['active', 'inactive'],
                     example: 'active'
@@ -71,9 +71,9 @@ export const swaggerDocument = {
                       type: 'object',
                       properties: {
                         id: { type: 'integer' },
-                        username: { type: 'string' },
+                        nombre: { type: 'string' },
                         email: { type: 'string' },
-                        status: { type: 'string' },
+                        estado: { type: 'string' },
                         type: { type: 'string' }
                       }
                     }
@@ -128,9 +128,9 @@ export const swaggerDocument = {
                       type: 'object',
                       properties: {
                         id: { type: 'integer' },
-                        username: { type: 'string' },
+                        nombre: { type: 'string' },
                         email: { type: 'string' },
-                        status: { type: 'string' },
+                        estado: { type: 'string' },
                         type: { type: 'string' }
                       }
                     },

@@ -1,0 +1,23 @@
+{
+  "development": {
+    "nombre": "dbuser",
+    "password": "dbpassword",
+    "database": "dbname",
+    "host": "database-layer",
+    "dialect": "postgres"
+  },
+  "test": {
+    "nombre": "dbuser",
+    "password": "dbpassword",
+    "database": "dbname",
+    "host": "database-layer",
+    "dialect": "postgres"
+  },
+  "production": {
+    "nombre": "dbuser",
+    "password": "dbpassword",
+    "database": "dbname",
+    "host": "database-layer",
+    "dialect": "postgres"
+  }
+}

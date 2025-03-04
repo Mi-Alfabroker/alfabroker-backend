@@ -1,8 +1,9 @@
 import { IsEmail, IsNotEmpty, IsEnum } from 'class-validator';
+import { UserStatus, UserType, PersonType } from '../models/user';
 
 export class SignUpRequest {
   @IsNotEmpty()
-  username: string;
+  nombre: string;
 
   @IsNotEmpty()
   @IsEmail()
@@ -11,9 +12,16 @@ export class SignUpRequest {
   @IsNotEmpty()
   password: string;
 
-  @IsEnum(['active', 'inactive'])
-  status: 'active' | 'inactive' = 'active';
+  @IsEnum(UserStatus)
+  estado: UserStatus = UserStatus.ACTIVO;
 
-  @IsEnum(['admin', 'agent'])
-  type: 'admin' | 'agent' = 'agent';
+  @IsEnum(UserType)
+  type: UserType = UserType.CLIENTE;
+
+  telefono?: string;
+
+  direccion?: string;
+
+  @IsEnum(PersonType)
+  tipo_persona?: PersonType;
 }
