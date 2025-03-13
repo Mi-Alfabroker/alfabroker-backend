@@ -6,4 +6,11 @@ COPY package*.json ./
 
 RUN npm install
 
-COPY . .
+# No copiamos el código fuente aquí, ya que lo montaremos como volumen
+# COPY . .
+
+# Exponemos el puerto
+EXPOSE 4000
+
+# Comando por defecto (será sobrescrito por docker-compose)
+CMD ["npm", "run", "dev"]

@@ -55,7 +55,13 @@ export default class UserService {
     }
 
     const token = jwt.sign(
-      { id: user.id, email: user.email, type: user.type },
+      { 
+        id: user.id, 
+        email: user.email, 
+        type: user.type,
+        nombre: user.nombre,
+        estado: user.estado
+      },
       JWT_SECRET,
       { expiresIn: '24h' }
     );

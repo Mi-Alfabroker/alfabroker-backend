@@ -1,5 +1,6 @@
 import { Table, Model, Column, DataType, ForeignKey, BelongsTo } from 'sequelize-typescript';
 import User from './user';
+import Aseguradora from './aseguradora';
 import { DatosPoliza, Beneficiario } from '../types/polizas';
 import { CoberturaAseguradora } from '../types/aseguradora';
 
@@ -57,6 +58,7 @@ export default class Poliza extends Model {
   })
   fecha_fin!: Date;
 
+  @ForeignKey(() => Aseguradora)
   @Column({
     type: DataType.INTEGER,
     allowNull: false
@@ -104,4 +106,7 @@ export default class Poliza extends Model {
 
   @BelongsTo(() => User)
   usuario!: User;
+
+  @BelongsTo(() => Aseguradora)
+  aseguradora!: Aseguradora;
 } 

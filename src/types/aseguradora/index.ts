@@ -1,7 +1,7 @@
 export interface CoberturaAseguradora {
   nombre: string;
   descripcion: string;
-  valor: string;
+  valor: number;
   deducible: string;
   sublimite: string;
 }

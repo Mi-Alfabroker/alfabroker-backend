@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development ts-node-dev --respawn src/index.ts",
+    "dev": "cross-env NODE_ENV=development ts-node-dev --poll --respawn --transpile-only --ignore-watch node_modules src/index.ts",
     "build": "cross-env NODE_ENV=production tsc",
     "lint": "eslint src/**/*.ts",
     "format": "eslint src/**/*.ts --fix",

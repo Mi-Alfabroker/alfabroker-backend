@@ -1,6 +1,6 @@
 interface Cobertura {
   nombre: string;
-  valor: string;
+  valor: number;
   deducible: string;
 }
 

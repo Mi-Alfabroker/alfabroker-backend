@@ -24,3 +24,25 @@ kube-deploy:
 
 kube-serve:
 	kubectl apply -f service.yml
+
+# Comandos para desarrollo
+dev-up:
+	docker-compose up
+
+dev-build:
+	docker-compose build
+
+dev-restart:
+	docker-compose restart express-typescript-boilerplate
+
+dev-logs:
+	docker-compose logs -f express-typescript-boilerplate
+
+# Comando para reiniciar completamente el entorno de desarrollo
+dev-reset:
+	docker-compose down
+	docker-compose up --build
+
+# Comando para entrar al contenedor
+dev-shell:
+	docker-compose exec express-typescript-boilerplate sh

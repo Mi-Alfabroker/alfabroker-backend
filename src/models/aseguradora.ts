@@ -8,11 +8,11 @@ import Poliza from './poliza';
 })
 export default class Aseguradora extends Model {
   @Column({
-    type: DataType.UUID,
-    defaultValue: DataType.UUIDV4,
-    primaryKey: true
+    type: DataType.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
   })
-  id!: string;
+  id!: number;
 
   @Column({
     type: DataType.STRING,

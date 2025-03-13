@@ -12,5 +12,6 @@ const authController = Container.get(AuthController);
 router.post('/signup', RequestValidator.validate(SignUpRequest), authController.signUp);
 router.post('/signin', RequestValidator.validate(SignInRequest), authController.signIn);
 router.get('/users', authController.getAllUsers);
+router.get('/users/:id', authController.getUserById);
 
 export default router;

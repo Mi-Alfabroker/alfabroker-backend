@@ -31,4 +31,20 @@ export default class AuthController {
     const response = await this.userService.getAllUsers();
     return new SuccessResponse(response);
   });
+
+  getUserById = asyncWrapper(async (req: Request) => {
+    const { id } = req.params;
+    const user = await this.userService.getUserById(Number(id));
+    
+    // Devolver solo la información básica del usuario
+    const basicUserInfo = {
+      id: user.id,
+      nombre: user.nombre,
+      email: user.email,
+      estado: user.estado,
+      type: user.type
+    };
+    
+    return new SuccessResponse(basicUserInfo);
+  });
 }

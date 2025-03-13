@@ -11,6 +11,7 @@ import swaggerUi from 'swagger-ui-express';
 import { swaggerDocument } from '../swagger';
 import { Sequelize } from 'sequelize/types';
 import connection from './services/SequelizeClient';
+import InitService from './services/InitService';
 
 const app: Application = express();
 const PORT = Config.port || 4000;
@@ -30,8 +31,15 @@ let server: http.Server;
 let dbClient: Sequelize | undefined;
 const startServer = async () => {
   try {
+    // Sincronizar la base de datos
     dbClient = await connection.sync();
+    
+    // Inicializar datos por defecto
+    await InitService.initAll();
+    
+    // Iniciar el servidor
     server = app.listen(PORT, (): void => {
+      console.log(`Servidor iniciado en el puerto ${PORT}`);
     });
   } catch (error: any) {
     console.error(`Error occurred: ${error.message}`);

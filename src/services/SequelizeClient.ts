@@ -2,6 +2,7 @@ import { Sequelize } from 'sequelize-typescript';
 import {
   User,
   Poliza,
+  Aseguradora
 } from '../models';
 
 const sequelize = new Sequelize({
@@ -11,7 +12,7 @@ const sequelize = new Sequelize({
   password: process.env.DB_PASSWORD || 'postgres',
   database: process.env.DB_NAME || 'alfabroker',
   logging: false,
-  models: [User, Poliza],
+  models: [User, Poliza, Aseguradora],
 });
 
 export default sequelize;
